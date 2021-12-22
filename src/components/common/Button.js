@@ -5,6 +5,7 @@ const Button = (props) => {
 
   return (
     <button
+      type={props.type || "submit"}
       style={{...styles.button, ...props.style}}
       onClick={props.onClick}
       disabled={props.disabled}
