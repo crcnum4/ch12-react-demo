@@ -4,7 +4,7 @@ const BorderCard = (props) => {
 
   return (
     <div
-      style={styles.card}
+      style={{...styles.card, ...props.style}}
     >
       {props.children}
     </div>

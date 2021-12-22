@@ -34,9 +34,10 @@ const NavBar = (props) => {
           padding: '0em 1.2em',
           justifyContent: 'flex-end'
         }}>
-          <NavButton to="/" label="home"/>
-          <NavButton to="/posts" label="posts"/>
-          <NavButton to="/developers" label="Devs"/>
+          <NavButton to="/" label="home" />
+          <NavButton to="/news" label="news" />
+          <NavButton to="/login" label="login" />
+          <NavButton to="/register" label="Sign up" />
         </div>
     </nav> 
   )
