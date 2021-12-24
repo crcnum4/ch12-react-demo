@@ -1,8 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import NewUserForm from './NewUserForm';
 import axios from 'axios';
+import {AuthContext} from '../Providers/AuthProvider';
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
+
+  let navigate = useNavigate();
 
   const [query, setQuery] = useState({
     username: "",
@@ -12,6 +16,10 @@ const Register = () => {
     fname: "",
     lname: "",
   });
+
+  // submitting context
+
+  const [auth, setAuth] = useContext(AuthContext)
 
   const updateForm = (field, value) => {
     setQuery({
@@ -64,7 +72,9 @@ const Register = () => {
         }
       )
       console.log(res.data);
+      setAuth({token, name: res.data.name});
       alert(res.data.id);
+      navigate('/developers')
     } catch (err) {
       alert (err.response.data.message);
     }
