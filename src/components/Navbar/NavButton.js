@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 
 const NavButton = (props) => {
   // const [display, setDisplay] = useState(false);
@@ -27,7 +27,8 @@ const NavButton = (props) => {
       {props.label}
     </NavLink>
   )
-
+  // <a href="destination">text </a>
+  // <Link to="destination">text</Link>
 }
 
 export default NavButton;
