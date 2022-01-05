@@ -1,25 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import axios from 'axios';
 import Article from './Article';
+import { NewsContext } from '../Providers/NewsProvider';
+import Form from '../common/Form';
+import InlineInputContainer from '../common/InlineInputContainer';
+import Input from '../common/Input';
+import Button from '../common/Button';
 
 const Articles = () => {
 
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {articles, loading, setQuery} = useContext(NewsContext);
+  const [q, setQ] = useState("");
 
-  useEffect(() => {
-    const _getNews = async () => {
-      try {
-        const res = await axios.get("http://localhost:8080/api/test/news/Java");
-        console.log(res.data);
-        setLoading(false);
-        setArticles(res.data);
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
-    _getNews();
-  },[])
+  const handleSubmit = (e) => {
+    setQuery(q);
+  }
 
   const displayArticles = () => {
     // [{article1}, {article2}, {article3}]
@@ -31,6 +26,17 @@ const Articles = () => {
 
   return (
     <div style={{width: "100%", justifyContent: 'center'}}>
+      <Form onSubmit={handleSubmit}>
+        <InlineInputContainer>
+          <Input 
+            id="query"
+            placeholder="Search"
+            onChange={e => setQ(e.target.value)}
+            value={q}
+          />
+          <Button>Search</Button>
+        </InlineInputContainer>
+      </Form>
       {loading ? (
         <p>Loading...</p>
       ) : displayArticles()

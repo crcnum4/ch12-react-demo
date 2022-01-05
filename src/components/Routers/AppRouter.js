@@ -13,6 +13,7 @@ const AppRouter = () => {
     <div style={{width: '100%'}}>
       <Navbar />
       <div style={{ marginTop: "75px", width: "100%"}}>
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/news" element={<News />} />
