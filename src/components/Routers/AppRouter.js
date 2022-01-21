@@ -6,6 +6,7 @@ import News from '../News/News';
 import Login from '../Auth/Login';
 import Register from '../Auth/Register';
 import Developers from '../Developers/Developers';
+import Profile from '../Profile/Profile';
 
 const AppRouter = () => {
 
@@ -20,6 +21,7 @@ const AppRouter = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/developers" element={<Developers />} />
+          <Route path="/developers/:devId" element={<Profile />} />
         </Routes>
       </div>
     </div>

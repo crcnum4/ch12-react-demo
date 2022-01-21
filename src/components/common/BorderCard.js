@@ -5,6 +5,7 @@ const BorderCard = (props) => {
   return (
     <div
       style={{...styles.card, ...props.style}}
+      onClick={props.onClick}
     >
       {props.children}
     </div>

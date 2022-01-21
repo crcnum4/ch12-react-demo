@@ -2,12 +2,14 @@ import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from '../Providers/AuthProvider';
 import Spinner from '../faCommon/Spinner';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 import Developer from './Developer';
 
 const Developers = (props) => {
   const [auth] = useContext(AuthContext)
   const [developers, setDevelopers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // use effect to pull list of developers
   // use state to store the developers
@@ -39,7 +41,11 @@ const Developers = (props) => {
   },[auth.token])
 
   const displayDevelopers = () => {
-    return developers.map(dev => <Developer developer={dev} key={dev.id}/>)
+    return developers.map(dev => <Developer developer={dev} key={dev.id} onSelect={onSelect}/>)
+  }
+
+  const onSelect = (devId) => {
+    navigate(`/developers/${devId}`)
   }
 
   return (
