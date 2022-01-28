@@ -7,6 +7,7 @@ import image from '../../assets/background-img.jpg';
 import Button from '../common/Button';
 import {faUserPlus, faUserSlash} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import lorem from '../../assets/loremIpsum';
 
 
 const Profile = (props) => {
@@ -41,6 +42,27 @@ const Profile = (props) => {
     display cohort number and then on right add and block buttons.
     display about me and if friends then display friends list on right.
   */
+
+  const addFriend = async () => {
+    // send id to backend
+    try {
+      await axios.post(
+        `http://localhost:8080/api/relationships/add/${developer.id}`,
+        {}, // empty post body
+        {
+          headers: {
+            Authorization: `Bearer ${auth.token}`
+          }
+        }
+      )
+      alert('success');
+    } catch (e) {
+      console.log(e.message);
+      if( e.response) {
+        console.log(e.response.data.message);
+      }
+    }
+  }
 
   const displayProfile = () => {
     return (
@@ -85,10 +107,13 @@ const Profile = (props) => {
           width: '100%',
           maxWidth: '900px'
         }}>
-          <Button style={{
-            width: 'auto',
-            color: '#F1F1F1',
-          }}>
+          <Button 
+            style={{
+              width: 'auto',
+              color: '#F1F1F1',
+            }}
+            onClick={addFriend}
+          >
             <FontAwesomeIcon icon={faUserPlus} /> Add Friend
           </Button>
           <Button style={{
@@ -100,6 +125,33 @@ const Profile = (props) => {
           </Button> 
         </div>
         {/* about me and friends list */}
+        <div style={{
+          display: "flex",
+          flexDirection: "row",
+          width: "100%",
+          maxWidth: "900px",
+        }}>
+          <div style={{
+            flex: 2,
+            flexDirection: "column",
+            width: '100%',
+            padding: '4px',
+            display: 'flex'
+          }}>
+            <h2>About Me</h2>
+            <p>{lorem.substring(0, 5000)}</p>
+          </div>
+          <div style={{
+            flex: 1,
+            display: 'flex', 
+            flexDirection: 'column',
+            width: '100%',
+            padding: '4px'
+          }}>
+            <h2>Friends</h2>
+            <p>You are alone in the world</p>
+          </div>
+        </div>
       </Fragment>
     )
   }
