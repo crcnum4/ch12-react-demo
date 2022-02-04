@@ -72,7 +72,7 @@ const Register = () => {
         }
       )
       console.log(res.data);
-      setAuth({token, name: res.data.name});
+      setAuth({token, profile: res.data});
       alert(res.data.id);
       navigate('/developers')
     } catch (err) {

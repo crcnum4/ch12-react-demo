@@ -3,10 +3,9 @@ import React, {useState} from 'react';
 const AuthContext = React.createContext([]);
 
 const AuthProvider = (props) => {
-  const [auth, setAuth] = useState({token: null, name: null});
+  const [auth, setAuth] = useState({token: null, profile: null});
 
-  //if this was a data collecting provider 
-  //the use effect method would go here
+  //useEffect can check for local storage for previously logged in user.
 
   return (
     <AuthContext.Provider value={[auth, setAuth]}>
