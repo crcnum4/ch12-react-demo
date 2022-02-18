@@ -16,11 +16,11 @@ const Developers = (props) => {
   // neet bearer token to get the developer list.
 
   useEffect(() => {
+    const host = process.env.REACT_APP_API_HOST || "http://localhost:8080";
     const _getDevelopers = async () => {
       try {
-
         const res = await axios.get(
-          'http://localhost:8080/api/developers',
+          `${host}/api/developers`,
           {
             headers: {
               "Authorization": `Bearer ${auth.token}`
